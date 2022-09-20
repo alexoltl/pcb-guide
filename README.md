@@ -40,3 +40,4 @@ git push -u -f origin main
 ```
 This command makes the changes visible on the website. The extra flags are there to prevent some errors, don't forget them.
 
+![how to commit](images/1.png)
