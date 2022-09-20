@@ -25,10 +25,17 @@ Run the command `git submodule add https://github.com/ebastler/marbastlib/`. Mar
 
 Open up KiCad, and go to Preferences -> Manage Footprint Libraries. 
 
-Click the folder icon, navigate to the marbastlib folder, and select the `marbastlib-mx.pretty` folder. For this tutorial, I'll focus on the mx folder. Once you're done, close the window and go to Preferences -> Manage Symbol Libraries. This time select the `marbastlib-mx.kicad_sym` file to import.
+![footprint libraries](images/footprints.png)
+
+Click the folder icon, navigate to the marbastlib folder, and select the `marbastlib-mx.pretty` folder.
 
 ![marbastlib](images/marbastlib.png)
 
+Once you're done, close the window and go to Preferences -> Manage Symbol Libraries. This time select the `marbastlib-mx.kicad_sym` file to import.
+
+![symbol libraries](images/symbols.png)
+
+### How to make a commit
 To save a copy on Github, you commit. To commit, you need to run these 3 commands
 
 ```
@@ -45,13 +52,25 @@ git push -u -f origin main
 
 ![how to commit](images/commit.png)
 
-We're now ready to start making the project files and place down the parts
+We're now ready to start making the keyboard.
 
-# Schematic
+# The schematic
 
-For the sake of simplicity, I'm going to make a numpad in this tutorial. If you're planning to make full size PCBs, I've left some information in the [Miscellaneous section](#Miscellaneous) to get you started with that.
+For the sake of simplicity, I'm going to make a numpad in this tutorial. If you're planning to make bigger keyboards, I'll leave some information in the [Miscellaneous section](#Miscellaneous) to get you started with that.
 
-Create a new KiCad project and save it inside the folder you just unzipped (If you want to use the repository for multiple KiCad projects, you can save it into a new directory inside the folder). This will create 3 main files, one with a `.kicad_pro` extention, a `.kicad_pcb` extention, and a `.kicad_sch` extention.
+Create a new KiCad project (File -> New Project) and save it inside the folder where the repository is. You can decide if you want it to be into it's own directory. 
 
+![creating the project](images/newproject.png)
 
-Open the `.kicad_sch` file. This file is the elctronic blueprint of the keyboard. 
+This will create 3 main files, one with a `.kicad_pro` extention, a `.kicad_pcb` extention, and a `.kicad_sch` extention. 
+
+We'll talk about all of them later, but for now open the `.kicad_sch` file. This file is the schematic of the keyboard. 
+
+![schem opened](images/blanksch.png)
+
+To add a symbol, press `A`. A symbol is a placement where we can connect components (like resistors) to it.
+
+Start by placing the symbol for an `ATmega32-2`. Usually for bigger PCBs I would use an `ATmega32u4` instead, but the 32u2 is perfect because we don't need many ports and it's cheaper.
+
+![adding symbols](images/addingsymbols.png)
+
