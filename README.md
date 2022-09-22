@@ -160,4 +160,56 @@ It's a good idea to have a reset button, in the case of failures. This needs a p
 
 To connect the PCB to a device, it needs to have a port to be able to connect to it. There are 2 options that I know, which is micro usb and USB-C. USB-C is more complicated and harder to do (you need to work with 15 pins whereas micro usb only uses 2 pins), so it'll be linked [here](#usb-c).
 
-We're going to use micro usb for this, so add a `Molex-`
+We're going to use micro usb for this, so add a `Molex-0548190589` component to the schematic.
+
+![molex connector](images/microusb.png)
+
+This component is going to use a polyfuse. You can see it working [here](https://www.youtube.com/watch?v=ZW-hRNV62X8). Basically, a polyfuse automatically resets itself after it's safe to. This is incredibly helpful, as we don't need to open the keyboard and replace the fuse every time it blows. 
+
+Connect it like below
+
+![connected molex](images/connectedmicro.png)
+
+The D+ and D- labels connects to its D+ and D- pins on the microcontroller.
+
+![d+ and d- connected](images/dpins.png)
+
+Add a 1uF capacitor to the UCAP pin.
+
+![ucap pin](images/ucap.png)
+
+Add a 10k resistor to the PD7 pin.
+
+![pd7 pin](images/pd7.png)
+
+All that's needed for the schematic now is to add the switches.
+
+From marbastlib, get the 1U switch. There are 2 variants. One is the hotswap varient, which has support for the Kaihl Hotswap Sockets, and the solder varient, which doesn't have hotswap sockets. I'll use the hotswap varient but you can use whichever one.
+
+![switches](images/switchsymbol.png)
+
+We're going to set it up so that each switch has a unique row and column identifier. This will be helpful when you're coding the firmware for the keyboard later on as well.
+
+![excellent drawing](images/numpad.png)
+
+Add a switch and place a diode underneath it. (Orientaion for the diode matters)
+
+![switches on the schem](images/switchplaced.png)
+
+Copy paste this for however many keys you need, in a grid. For the numpad, this is what it looks like
+
+![numpad grid](images/numpadschem.png)
+
+Connect the rows and collumns.
+
+![numpad grid connected](images/numpadgridconnected.png)
+
+Attach global labels to each row and collumn.
+
+![numpad finished](images/numpadfinished.png)
+
+It starts from 0 because that's how QMK and VIA (firmware software) processes the rows.
+
+
+
+The schematic is finished. Now to port all of the schematic to the PCB, All the components 
